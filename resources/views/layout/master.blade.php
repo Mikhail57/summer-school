@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="page">
-
-
-
+<x-header class="page__head"/>
+<div class="page__main">
+    @yield('content')
+</div>
+<x-footer class="page__footer"/>
 </body>
 </html>

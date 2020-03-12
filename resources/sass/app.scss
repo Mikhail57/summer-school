@@ -30,6 +30,17 @@
     }
 }
 
+.header {
+    .header__content {
+        @include grid.container;
+    }
+
+    .header__title {
+        color: white;
+        text-decoration: none;
+    }
+}
+
 .block {
     text-align: center;
     width: 100%;

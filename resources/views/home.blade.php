@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.master')
 
-    <title>Летние курсы</title>
-    <link rel="stylesheet" href="/css/app.css">
-</head>
-<body class="page">
-<header class="header page__head">
-    <a href="{{ url('/') }}">Летняя школа {{ date('yy') }}</a>
-</header>
-<div class="page__main">
+@section('title', 'Страна Мастеров ИГУ')
+
+@section('content')
     <section class="block promo">
         <h1 class="block__title block__title_promo">Страна мастеров</h1>
         <div class="block__content">
-            <input type="button" value="Регистрация" class="button button_accent">
+            <a href="#register">
+                <input type="button" value="Регистрация" class="button button_accent">
+            </a>
         </div>
         <span class="move-down"></span>
     </section>
@@ -40,10 +33,10 @@
         <h2 class="block__title">Список курсов</h2>
         <!-- Courses -->
     </section>
-    <section class="block register">
+    <section class="block register" id="register">
         <h2 class="block__title">Регистрация</h2>
         <div class="block__content">
-            <form action="/register" method="post" class="form">
+            <form action="{{ route('registerClient') }}" method="post" class="form">
                 @csrf
                 <div class="form__line">
                     <label for="firstName" class="form__label">Имя</label>
@@ -72,6 +65,7 @@
                     <input class="form__field" type="number" name="age" id="age" min="7" max="18" placeholder="7"
                            required>
                 </div>
+
                 <div class="form__line">
                     <label for="course" class="form__label">Выберите курс</label>
                     <select class="form__field" name="course" id="course">
@@ -84,15 +78,19 @@
                     <input class="form__checkbox" type="checkbox" name="personal" id="personal">
                     <label class="form__label_inline" for="personal">Согласие на обработку Персональных данных</label>
                 </div>
+                @if ($errors->any())
+                    <div class="form__line errors">
+                        <ul class="errors-list">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form__line">
                     <input class="button form__submit" type="submit" value="Отправить">
                 </div>
             </form>
         </div>
     </section>
-</div>
-<footer class="page__footer">
-    Copyright &copy; Летняя школа ИГУ {{ date('yy') }}
-</footer>
-</body>
-</html>
+@endsection
