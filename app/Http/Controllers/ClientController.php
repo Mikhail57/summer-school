@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Client;
-use App\Http\Requests\StoreClient;
+use App\Http\Requests\StoreClientRequest;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function registerClient(StoreClient $request)
+    public function registerClient(StoreClientRequest $request)
     {
         $validated = $request->validated();
 

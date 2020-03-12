@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreClient extends FormRequest
+class StoreClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,16 +27,21 @@ class StoreClient extends FormRequest
             'firstName' => 'required|min:2|max:60',
             'lastName' => 'required|min:2|max:60',
             'middleName' => 'min:2|max:60',
-            'phone' => 'min:7|max:20',
+            'phone' => 'required|min:7|max:20',
             'email' => 'email:rfc,dns',
-            'personal' => 'bool|required'
+            'personal' => 'bool|accepted'
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
-            'personal.required' => 'Необходимо подтвердить согласие на обработку Персональных Данных.'
+            'personal' => 'Согласие на обработку Персональных Данных',
+            'firstName' => 'Имя',
+            'lastName' => 'Фамилия',
+            'middleName' => 'Отчество',
+            'phone' => 'Номер телефона',
+            'email' => 'Электронная почта',
         ];
     }
 
